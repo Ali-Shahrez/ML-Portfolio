@@ -1,0 +1,79 @@
+<svg viewBox="0 0 640 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="metricsTitle metricsDesc">
+  <title id="metricsTitle">Ensemble held-out metrics and case breakdown</title>
+  <desc id="metricsDesc">Accuracy 80.82%, precision 81.05%, recall 80.92%, F1 80.8%. Malignant cases: 86 correct, 26 missed, out of 112. Normal cases: 91 correct, 16 missed, out of 107.</desc>
+
+  <style>
+    .axis-lbl { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; fill: #2E2E2E; }
+    .val-lbl { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 14px; fill: #141414; }
+    .section-lbl { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; fill: #6b6b68; }
+    .bar-metric { fill: #2E2E2E; }
+    .bar-track { fill: #e6e2d9; }
+    .bar-correct { fill: #141414; }
+    .bar-missed { fill: #d8d3c8; stroke: #a9a49a; stroke-width: 1; }
+    .grp-lbl { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 13.5px; fill: #141414; }
+    .cnt-lbl { font-family: 'IBM Plex Sans', sans-serif; font-size: 12.5px; fill: #2E2E2E; }
+  </style>
+
+  <text class="section-lbl" x="4" y="20">Held-out set — 3-model ensemble</text>
+
+  <!-- Metric bars: Accuracy, Precision, Recall, F1 -->
+  <!-- track full width 420 at x=140, scale 0-100 -->
+
+  <!-- Accuracy 80.82 -->
+  <text class="axis-lbl" x="4" y="52">Accuracy</text>
+  <rect class="bar-track" x="140" y="38" width="420" height="16" rx="3"/>
+  <rect class="bar-metric" x="140" y="38" width="339.4" height="16" rx="3"/>
+  <text class="val-lbl" x="570" y="51">80.82%</text>
+
+  <!-- Precision 81.05 -->
+  <text class="axis-lbl" x="4" y="84">Precision</text>
+  <rect class="bar-track" x="140" y="70" width="420" height="16" rx="3"/>
+  <rect class="bar-metric" x="140" y="70" width="340.4" height="16" rx="3"/>
+  <text class="val-lbl" x="570" y="83">81.05%</text>
+
+  <!-- Recall 80.92 -->
+  <text class="axis-lbl" x="4" y="116">Recall</text>
+  <rect class="bar-track" x="140" y="102" width="420" height="16" rx="3"/>
+  <rect class="bar-metric" x="140" y="102" width="339.9" height="16" rx="3"/>
+  <text class="val-lbl" x="570" y="115">80.92%</text>
+
+  <!-- F1 80.8 -->
+  <text class="axis-lbl" x="4" y="148">F1</text>
+  <rect class="bar-track" x="140" y="134" width="420" height="16" rx="3"/>
+  <rect class="bar-metric" x="140" y="134" width="339.4" height="16" rx="3"/>
+  <text class="val-lbl" x="570" y="147">80.80%</text>
+
+  <line x1="0" y1="182" x2="640" y2="182" stroke="#dedad2" stroke-width="1"/>
+
+  <text class="section-lbl" x="4" y="210">Case breakdown — 219 held-out scans</text>
+
+  <!-- Malignant group: correct 86, missed 26 (of 112) -->
+  <text class="grp-lbl" x="4" y="244">Malignant (112)</text>
+
+  <!-- correct bar -->
+  <rect class="bar-correct" x="180" y="228" width="258" height="20" rx="3"/>
+  <!-- 86/112 * 336 total width available -->
+  <text class="cnt-lbl" x="180" y="266">86 correctly flagged</text>
+
+  <!-- missed bar -->
+  <rect class="bar-missed" x="446" y="228" width="78" height="20" rx="3"/>
+  <text class="cnt-lbl" x="446" y="266">26 missed</text>
+
+  <!-- Normal group: correct 91, missed 16 (of 107) -->
+  <text class="grp-lbl" x="4" y="308">Normal (107)</text>
+
+  <rect class="bar-correct" x="180" y="292" width="273" height="20" rx="3"/>
+  <text class="cnt-lbl" x="180" y="330">91 correctly cleared</text>
+
+  <rect class="bar-missed" x="461" y="292" width="48" height="20" rx="3"/>
+  <text class="cnt-lbl" x="461" y="330">16 missed</text>
+
+  <line x1="0" y1="358" x2="640" y2="358" stroke="#dedad2" stroke-width="1"/>
+
+  <rect class="bar-correct" x="4" y="378" width="14" height="14" rx="2"/>
+  <text class="axis-lbl" x="26" y="390">Correct</text>
+  <rect class="bar-missed" x="110" y="378" width="14" height="14" rx="2"/>
+  <text class="axis-lbl" x="132" y="390">Missed</text>
+
+  <text class="axis-lbl" x="4" y="428" style="fill:#6b6b68; font-size:12.5px;">1,097-image dataset. A real limitation, not rounded away — framed as a screening aid, not a diagnostic tool.</text>
+</svg>

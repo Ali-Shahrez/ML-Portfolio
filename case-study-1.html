@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — Lung Cancer Detection: Ruling Out the Wrong Bug | Ali Shahrez</title>
+<meta name="description" content="A model that scored 90% in training and swung 50–70% on new images looked like overfitting. It wasn't. Here's how I ruled it out and found the real cause.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%224%22 fill=%22%23141414%22/><text x=%2216%22 y=%2221%22 font-family=%22IBM Plex Sans, sans-serif%22 font-weight=%22600%22 font-size=%2213%22 fill=%22%23F7F6F4%22 text-anchor=%22middle%22>AS</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap-wide">
+    <a class="wordmark" href="index.html">
+      <span class="mark">AS</span> Ali Shahrez
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="case-study-1.html" class="current">Case Study 1</a>
+      <a href="case-study-2.html">Case Study 2</a>
+      <a href="about.html">About</a>
+      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <div class="cs-header">
+      <p class="cs-kicker">Case study — lung cancer detection</p>
+      <h1>Ruling Out the Wrong Bug</h1>
+      <p class="cs-meta">
+        Ensemble of CNNs, chest CT classification · code on
+        <a href="https://github.com/Ali-Shahrez/Lung-Cancer-AI-Ensemble-CNN" target="_blank" rel="noopener">GitHub →</a>
+      </p>
+    </div>
+
+    <div class="figure">
+      <div class="figure-frame">
+        <img src="assets/diagnostic-path-diagram.svg"
+             alt="Diagnostic reasoning chain: symptom of 90% train and 50–70% test accuracy leads to an overfitting hypothesis, shown with a dashed border as ruled out once train and test accuracy fell together under a capacity cut. Solid-bordered boxes show the confirmed chain: resolution hypothesis of low-resolution images, confirmed by upscaling to 224 pixels, a remaining single-model plateau around 70%, and the final ensemble fix reaching 80.82% accuracy.">
+      </div>
+      <figcaption>Dashed borders mark the ruled-out path. Solid borders mark the confirmed diagnostic chain.</figcaption>
+    </div>
+
+    <section class="beat">
+      <h2>The problem</h2>
+      <p>
+        An ensemble of CNNs, trained to classify lung CT scans as malignant or normal,
+        scored above 90% on training data. On new images, accuracy swung wildly —
+        anywhere from 50% to 70%, run to run. That reads like the textbook overfitting
+        signature: strong on training data, unstable and weak on anything new.
+      </p>
+    </section>
+
+    <section class="beat">
+      <h2>What I did</h2>
+      <p>
+        I started by treating it as overfitting and cut the model's capacity — fewer
+        parameters, less room to memorize. Accuracy dropped on training data <em>and</em>
+        on test data.
+      </p>
+      <p>
+        That result ruled the diagnosis out: overfitting predicts training accuracy
+        staying high while test accuracy suffers. Both falling together meant the model
+        wasn't memorizing — there wasn't enough resolution in the images for it to pick
+        up the pattern.
+      </p>
+    </section>
+
+    <div class="mid-cta">
+      <p class="pull-quote">
+        "Both falling together ruled out overfitting — a fix that predicts one thing and
+        produces another means the diagnosis was wrong, not the model."
+      </p>
+      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+    </div>
+
+    <section class="beat">
+      <p>
+        I went back and looked at the images directly. They were 128×128 pixels — too
+        low-resolution to show the fine detail a diagnosis depends on. I tested that
+        theory in isolation, changing nothing else: upscaled the inputs to 224×224.
+        Accuracy went up, and the run-to-run variance disappeared. The instability had
+        never been overfitting — it was the same resolution problem, confirmed.
+      </p>
+      <p>
+        With the real bottleneck fixed, I built up the architecture properly — deeper
+        (5 convolutional blocks), regularized (L2, dropout, batch normalization) — and
+        pushed a single model to about 70% accuracy, where it plateaued across runs.
+        That plateau was a separate problem: not a misdiagnosis this time, just a
+        ceiling on what one model could do. I trained three CNNs — identical
+        architecture, different random seeds, same 80/20 split — and combined their
+        predictions by averaging outputs and applying a threshold tuned to maximize F1,
+        rather than leaving it at a default 0.5.
+      </p>
+    </section>
+
+    <section class="beat">
+      <h2>What came of it</h2>
+      <p>
+        The ensemble reached 80.82% accuracy (81.05% precision, 80.92% recall,
+        macro-averaged) on held-out data — up from a single model plateaued at ~70%,
+        and from an unstable baseline that never should have been diagnosed as
+        overfitting in the first place.
+      </p>
+      <div class="figure">
+        <div class="figure-frame">
+          <img src="assets/ensemble-metrics-chart.svg"
+               alt="Bar chart of held-out metrics: accuracy 80.82%, precision 81.05%, recall 80.92%, F1 80.8%. Case breakdown: of 112 malignant cases, 86 correctly flagged and 26 missed. Of 107 normal cases, 91 correctly cleared and 16 missed.">
+        </div>
+        <figcaption>Real held-out results from the 1,097-image dataset. Restyled to the site's neutral palette — same numbers, no accent color used, since nothing on this page should compete with the CTA for it.</figcaption>
+      </div>
+      <p>
+        Of 112 malignant cases in the test set, it correctly flagged 86 and missed 26 —
+        a real limitation on a small dataset, and the reason I'd frame this as a
+        screening aid, not a diagnostic tool.
+      </p>
+    </section>
+
+    <div class="closing-cta">
+      <p>Want to talk through how I'd debug something like this on your team?</p>
+      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+    </div>
+
+    <div class="bridge">
+      <a class="plain-link" href="case-study-2.html">Same pattern, different project →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="foot-info">
+      <p class="foot-meta">Ali Shahrez · shahrez375@gmail.com</p>
+      <div class="foot-links">
+        <a href="https://github.com/Ali-Shahrez" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/ali-shahrez-608b70324/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </div>
+    </div>
+    <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+/* =========================================================
+   Ali Shahrez — Portfolio
+   Graphite Identity Kit
+   Accent (#B45309) is reserved for exactly one thing on every
+   page: the screening-call CTA. It never appears anywhere else
+   — not on stats, not on headers, not on hover states.
+   ========================================================= */
+
+:root {
+  --bg: #F7F6F4;
+  --text: #141414;
+  --muted: #2E2E2E;
+  --muted-soft: #6b6b68;
+  --accent: #B45309;
+  --accent-dark: #8a3f07;
+  --hairline: #dedad2;
+  --ruled-out: #a9a49a;
+
+  --font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --content-width: 700px;
+  --wide-width: 880px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 400;
+  line-height: 1.65;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 0.5em 0;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0 0 1.3em 0; }
+
+a {
+  color: var(--text);
+  text-decoration-color: var(--ruled-out);
+  text-underline-offset: 3px;
+}
+
+a:hover { text-decoration-color: var(--text); }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+/* ---------- Layout shells ---------- */
+
+.wrap {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.wrap-wide {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.site-header .wrap-wide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wordmark .mark {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--text);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+nav.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+nav.site-nav a {
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+nav.site-nav a:hover { color: var(--text); }
+
+nav.site-nav a.current {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---------- CTA button (accent — reserved) ---------- */
+
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fdf8f3;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 14.5px;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 120ms ease;
+}
+
+.cta-button:hover { background: var(--accent-dark); }
+
+.cta-button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* Plain-text link — deliberately NOT accented, so it never
+   competes with the CTA for attention */
+.plain-link {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--ruled-out);
+  padding-bottom: 1px;
+}
+
+.plain-link:hover { border-bottom-color: var(--text); }
+
+/* ---------- Hero (home) ---------- */
+
+.hero {
+  padding: 88px 0 72px;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 46px);
+  max-width: 15ch;
+  margin-bottom: 28px;
+}
+
+.hero .hook {
+  font-size: 19px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin-bottom: 36px;
+}
+
+.hero .hook .turn {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Case-study prose ---------- */
+
+.cs-header {
+  padding: 56px 0 8px;
+}
+
+.cs-kicker {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+  margin-bottom: 14px;
+}
+
+.cs-header h1 {
+  font-size: clamp(28px, 4vw, 38px);
+  max-width: 22ch;
+}
+
+.cs-meta {
+  color: var(--muted-soft);
+  font-size: 14.5px;
+  margin-top: 14px;
+}
+
+.cs-meta a { color: var(--muted-soft); }
+
+section.beat {
+  padding: 40px 0;
+}
+
+section.beat h2 {
+  font-size: 21px;
+  margin-bottom: 0.7em;
+}
+
+section.beat + section.beat {
+  border-top: 1px solid var(--hairline);
+}
+
+.stat-line {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 21px;
+  margin: 1.4em 0;
+}
+
+/* ---------- Mid-page CTA (peak tension) ---------- */
+
+.mid-cta {
+  margin: 48px 0;
+  padding: 32px 28px;
+  background: #efece5;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+}
+
+.mid-cta .pull-quote {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 18px;
+  color: var(--text);
+}
+
+/* ---------- Closing CTA ---------- */
+
+.closing-cta {
+  padding: 64px 0 56px;
+  text-align: center;
+  border-top: 1px solid var(--hairline);
+}
+
+.closing-cta p {
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+/* ---------- Bridge link ---------- */
+
+.bridge {
+  padding: 8px 0 48px;
+  text-align: center;
+}
+
+.bridge a {
+  font-size: 15.5px;
+}
+
+/* ---------- Diagram / chart mounts ---------- */
+
+.figure {
+  margin: 36px 0 44px;
+}
+
+.figure figcaption {
+  font-size: 13.5px;
+  color: var(--muted-soft);
+  margin-top: 12px;
+  max-width: 56ch;
+}
+
+.figure .figure-frame {
+  background: #ffffff;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  padding: 24px;
+}
+
+/* ---------- About page ---------- */
+
+.about-hero {
+  padding: 64px 0 40px;
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 560px) {
+  .about-hero { grid-template-columns: 1fr; }
+}
+
+.bio-photo-slot {
+  width: 148px;
+  height: 148px;
+  border-radius: 6px;
+  background: repeating-linear-gradient(
+    135deg,
+    #efece5,
+    #efece5 8px,
+    #e6e2d9 8px,
+    #e6e2d9 16px
+  );
+  border: 1px dashed var(--ruled-out);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted-soft);
+  padding: 10px;
+  line-height: 1.4;
+}
+
+.how-i-work li {
+  margin-bottom: 0.9em;
+}
+
+.how-i-work {
+  padding-left: 1.2em;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--hairline);
+  padding: 36px 0 48px;
+}
+
+.site-footer .wrap-wide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.site-footer .foot-meta {
+  font-size: 13.5px;
+  color: var(--muted-soft);
+  margin: 0;
+}
+
+.foot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.foot-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.foot-links a {
+  font-size: 13.5px;
+  color: var(--muted-soft);
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.foot-links a:hover {
+  color: var(--text);
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 640px) {
+  .hero { padding: 56px 0 48px; }
+  section.beat { padding: 32px 0; }
+  .mid-cta { padding: 24px 20px; }
+}
+
+/* ---------- Skip link ---------- */
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  background: var(--text);
+  color: #fff;
+  padding: 10px 16px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+}

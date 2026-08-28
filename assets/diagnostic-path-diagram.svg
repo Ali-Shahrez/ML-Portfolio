@@ -1,0 +1,85 @@
+<svg viewBox="0 0 480 960" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagTitle diagDesc">
+  <title id="diagTitle">Diagnostic reasoning chain, symptom through resolution</title>
+  <desc id="diagDesc">Symptom: 90% train, 50 to 70% test accuracy, run to run. Overfitting hypothesis, ruled out after both train and test accuracy fell together under a capacity cut. Resolution hypothesis: images were too low resolution, upscaled to 224 pixels. Confirmed: accuracy rose and variance disappeared. Remaining plateau: single model around 70%, a separate ceiling, not a misdiagnosis. Ensemble fix: three models combined reached 80.82% accuracy.</desc>
+
+  <defs>
+    <marker id="arrowSolid" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2E2E2E"/>
+    </marker>
+    <marker id="arrowMuted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a9a49a"/>
+    </marker>
+  </defs>
+
+  <style>
+    .box-solid { fill: #ffffff; stroke: #141414; stroke-width: 1.4; }
+    .box-dashed { fill: #ffffff; stroke: #a9a49a; stroke-width: 1.4; stroke-dasharray: 6 4; }
+    .box-final { fill: #141414; stroke: #141414; stroke-width: 1.4; }
+    .lbl { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .lbl-muted { fill: #6b6b68; }
+    .lbl-dark { fill: #141414; }
+    .lbl-light { fill: #efece5; }
+    .body { font-family: 'IBM Plex Sans', sans-serif; font-weight: 400; font-size: 14.5px; fill: #141414; }
+    .body-light { font-family: 'IBM Plex Sans', sans-serif; font-weight: 400; font-size: 14.5px; fill: #f7f6f4; }
+    .body-strong { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 15px; fill: #141414; }
+    .body-strong-light { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 16px; fill: #ffffff; }
+    .connector { stroke: #2E2E2E; stroke-width: 1.4; fill: none; }
+    .connector-muted { stroke: #a9a49a; stroke-width: 1.4; fill: none; }
+  </style>
+
+  <!-- 1. Symptom -->
+  <rect class="box-solid" x="20" y="10" width="440" height="86" rx="5"/>
+  <text class="lbl lbl-muted" x="38" y="34">Symptom</text>
+  <text class="body-strong" x="38" y="58">90% train accuracy — 50–70% test, run to run</text>
+  <text class="body" x="38" y="80">Reads like the textbook overfitting signature.</text>
+
+  <line class="connector" x1="240" y1="96" x2="240" y2="132" marker-end="url(#arrowSolid)"/>
+
+  <!-- 2. Overfitting hypothesis (wrong turn) -->
+  <rect class="box-dashed" x="20" y="132" width="440" height="82" rx="5"/>
+  <text class="lbl lbl-muted" x="38" y="156">Hypothesis — wrong turn</text>
+  <text class="body" x="38" y="180">Overfitting. Fix: cut model capacity —</text>
+  <text class="body" x="38" y="200">fewer parameters, less room to memorize.</text>
+
+  <line class="connector-muted" x1="240" y1="214" x2="240" y2="250" marker-end="url(#arrowMuted)"/>
+
+  <!-- 3. Ruled out -->
+  <rect class="box-dashed" x="20" y="250" width="440" height="82" rx="5"/>
+  <text class="lbl lbl-muted" x="38" y="274">Ruled out</text>
+  <text class="body" x="38" y="298">Train AND test accuracy fell together.</text>
+  <text class="body" x="38" y="318">Overfitting predicts test suffering alone.</text>
+
+  <line class="connector" x1="240" y1="332" x2="240" y2="368" marker-end="url(#arrowSolid)"/>
+
+  <!-- 4. Resolution hypothesis -->
+  <rect class="box-solid" x="20" y="368" width="440" height="92" rx="5"/>
+  <text class="lbl lbl-muted" x="38" y="392">Resolution hypothesis</text>
+  <text class="body-strong" x="38" y="416">Images too low-resolution to learn from</text>
+  <text class="body" x="38" y="438">128×128 → tested in isolation, upscaled to 224×224.</text>
+
+  <line class="connector" x1="240" y1="460" x2="240" y2="496" marker-end="url(#arrowSolid)"/>
+
+  <!-- 5. Confirmed -->
+  <rect class="box-solid" x="20" y="496" width="440" height="82" rx="5"/>
+  <text class="lbl lbl-muted" x="38" y="520">Confirmed</text>
+  <text class="body-strong" x="38" y="544">Accuracy rose, run-to-run variance gone</text>
+  <text class="body" x="38" y="564">The resolution problem, confirmed — not overfitting.</text>
+
+  <line class="connector" x1="240" y1="578" x2="240" y2="614" marker-end="url(#arrowSolid)"/>
+
+  <!-- 6. Remaining plateau -->
+  <rect class="box-solid" x="20" y="614" width="440" height="82" rx="5"/>
+  <text class="lbl lbl-muted" x="38" y="638">Remaining plateau — separate problem</text>
+  <text class="body-strong" x="38" y="662">Single model, ~70% accuracy</text>
+  <text class="body" x="38" y="682">A capacity ceiling, not a misdiagnosis this time.</text>
+
+  <line class="connector" x1="240" y1="696" x2="240" y2="732" marker-end="url(#arrowSolid)"/>
+
+  <!-- 7. Ensemble fix — final -->
+  <rect class="box-final" x="20" y="732" width="440" height="112" rx="5"/>
+  <text class="lbl lbl-light" x="38" y="760">Ensemble fix</text>
+  <text class="body-strong-light" x="38" y="788">3 CNNs, different seeds, averaged + tuned threshold</text>
+  <text class="body-light" x="38" y="812">80.82% accuracy · 81.05% precision · 80.92% recall</text>
+  <text class="body-light" x="38" y="832">86 of 112 malignant cases correctly flagged</text>
+
+</svg>

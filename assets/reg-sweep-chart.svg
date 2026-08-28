@@ -1,0 +1,83 @@
+<svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sweepTitle sweepDesc">
+  <title id="sweepTitle">Regularization sweep — min_samples_leaf 25, 50, 100, 200</title>
+  <desc id="sweepDesc">Train Precision at 50 barely moves: 1.000, 1.000, 0.980, 0.980. Test Precision at 20 swings with no consistent direction: 0.850, 0.800, 0.650, 0.750. Test Precision at 50 also swings: 0.860, 0.780, 0.740, 0.660. Source: work notebooks w05 model, cell 25.</desc>
+
+  <style>
+    .grid { stroke: #dedad2; stroke-width: 1; }
+    .axis-lbl { font-family: 'IBM Plex Sans', sans-serif; font-size: 12.5px; fill: #6b6b68; }
+    .x-lbl { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; fill: #2E2E2E; text-anchor: middle; }
+    .line-train { stroke: #141414; stroke-width: 2.4; fill: none; }
+    .line-test20 { stroke: #6b6b68; stroke-width: 2; fill: none; stroke-dasharray: 7 5; }
+    .line-test50 { stroke: #a9a49a; stroke-width: 2; fill: none; stroke-dasharray: 2 4; }
+    .pt-train { fill: #141414; }
+    .pt-test20 { fill: #6b6b68; }
+    .pt-test50 { fill: #a9a49a; }
+    .legend-lbl { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; fill: #141414; }
+    .section-lbl { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; fill: #6b6b68; }
+  </style>
+
+  <text class="section-lbl" x="0" y="16">min_samples_leaf sweep — train vs. test</text>
+
+  <!-- gridlines 0.2 increments, plot y 40..300 -->
+  <g class="grid">
+    <line x1="90" y1="300" x2="600" y2="300"/>
+    <line x1="90" y1="248" x2="600" y2="248"/>
+    <line x1="90" y1="196" x2="600" y2="196"/>
+    <line x1="90" y1="144" x2="600" y2="144"/>
+    <line x1="90" y1="92"  x2="600" y2="92"/>
+    <line x1="90" y1="40"  x2="600" y2="40"/>
+  </g>
+  <g class="axis-lbl" text-anchor="end">
+    <text x="82" y="304">0.0</text>
+    <text x="82" y="252">0.2</text>
+    <text x="82" y="200">0.4</text>
+    <text x="82" y="148">0.6</text>
+    <text x="82" y="96">0.8</text>
+    <text x="82" y="44">1.0</text>
+  </g>
+
+  <!-- x positions for leaf sizes 25,50,100,200 -->
+  <!-- x: 100, 267, 434, 600 -->
+
+  <!-- Train P@50: 1.000, 1.000, 0.980, 0.980 -->
+  <polyline class="line-train" points="100,40 267,40 434,44.8 600,44.8"/>
+  <circle class="pt-train" cx="100" cy="40" r="4"/>
+  <circle class="pt-train" cx="267" cy="40" r="4"/>
+  <circle class="pt-train" cx="434" cy="44.8" r="4"/>
+  <circle class="pt-train" cx="600" cy="44.8" r="4"/>
+
+  <!-- Test P@20: 0.850, 0.800, 0.650, 0.750 -->
+  <polyline class="line-test20" points="100,79 267,92 434,131 600,105"/>
+  <circle class="pt-test20" cx="100" cy="79" r="4"/>
+  <circle class="pt-test20" cx="267" cy="92" r="4"/>
+  <circle class="pt-test20" cx="434" cy="131" r="4"/>
+  <circle class="pt-test20" cx="600" cy="105" r="4"/>
+
+  <!-- Test P@50: 0.860, 0.780, 0.740, 0.660 -->
+  <polyline class="line-test50" points="100,76.4 267,97.2 434,107.6 600,128.4"/>
+  <circle class="pt-test50" cx="100" cy="76.4" r="4"/>
+  <circle class="pt-test50" cx="267" cy="97.2" r="4"/>
+  <circle class="pt-test50" cx="434" cy="107.6" r="4"/>
+  <circle class="pt-test50" cx="600" cy="128.4" r="4"/>
+
+  <!-- x axis labels -->
+  <g class="x-lbl">
+    <text x="100" y="322">25</text>
+    <text x="267" y="322">50</text>
+    <text x="434" y="322">100</text>
+    <text x="600" y="322">200</text>
+  </g>
+  <text class="axis-lbl" x="350" y="344" text-anchor="middle">min_samples_leaf</text>
+
+  <!-- legend -->
+  <g>
+    <line x1="0" y1="368" x2="26" y2="368" class="line-train"/>
+    <text class="legend-lbl" x="32" y="372">Train P@50</text>
+
+    <line x1="160" y1="368" x2="186" y2="368" class="line-test20"/>
+    <text class="legend-lbl" x="192" y="372">Test P@20</text>
+
+    <line x1="320" y1="368" x2="346" y2="368" class="line-test50"/>
+    <text class="legend-lbl" x="352" y="372">Test P@50</text>
+  </g>
+</svg>

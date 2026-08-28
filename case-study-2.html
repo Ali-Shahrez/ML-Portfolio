@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — A Perfect Training Score, and Why I Didn't Trust It | Ali Shahrez</title>
+<meta name="description" content="A Random Forest hit a perfect training score. The standard fix didn't behave the way its own diagnosis predicted — so the diagnosis was wrong, not the fix.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%224%22 fill=%22%23141414%22/><text x=%2216%22 y=%2221%22 font-family=%22IBM Plex Sans, sans-serif%22 font-weight=%22600%22 font-size=%2213%22 fill=%22%23F7F6F4%22 text-anchor=%22middle%22>AS</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap-wide">
+    <a class="wordmark" href="index.html">
+      <span class="mark">AS</span> Ali Shahrez
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="case-study-1.html">Case Study 1</a>
+      <a href="case-study-2.html" class="current">Case Study 2</a>
+      <a href="about.html">About</a>
+      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <div class="cs-header">
+      <p class="cs-kicker">Case study — FlyRank ML internship, Lane 2</p>
+      <h1>A Perfect Training Score, and Why I Didn't Trust It</h1>
+      <p class="cs-meta">
+        Decline-risk ranking model, content refresh &amp; ranking · notebook on
+        <a href="https://github.com/Ali-Shahrez/flyrank-ml-internship" target="_blank" rel="noopener">GitHub →</a>
+      </p>
+    </div>
+
+    <section class="beat">
+      <p>
+        The task was a decline-risk ranking model: given a page's traffic and
+        engagement history, predict which pages are worth reviewing first. I trained a
+        Random Forest on a client-holdout split — train on some clients, test on others
+        the model has never seen — which is the honest way to check whether a model has
+        actually learned something, rather than just memorized the clients in front of it.
+      </p>
+      <p>The first result looked great. Too great.</p>
+      <p class="stat-line">Train Precision@20 and Precision@50: 1.000.</p>
+      <p>
+        A perfect score on training data is not a result. It's a warning. The standard
+        read is overfitting — the model has memorized its training rows instead of
+        learning a pattern that generalizes — and the standard fix is regularization:
+        force the model to make broader, less specific splits, so it can't just carve
+        out a rule for every individual row it's seen.
+      </p>
+    </section>
+
+    <section class="beat">
+      <h2>The sweep</h2>
+      <div class="figure">
+        <div class="figure-frame">
+          <img src="assets/reg-sweep-chart.svg"
+               alt="Line chart of a min_samples_leaf regularization sweep across 25, 50, 100, 200. Train Precision at 50 barely moves: 1.000, 1.000, 0.980, 0.980. Test Precision at 20 swings with no consistent direction: 0.850, 0.800, 0.650, 0.750. Test Precision at 50 also swings: 0.860, 0.780, 0.740, 0.660.">
+        </div>
+        <figcaption>work/notebooks/w05_model.ipynb, cell 25 — verified against live execution output.</figcaption>
+      </div>
+      <p>
+        I ran a sweep across <code>min_samples_leaf</code> — 25, 50, 100, 200 — each
+        step forcing the model to require more data before it's allowed to split
+        further. If overfitting were the real cause, this should show up clearly: the
+        train score should come down as the model is forced to generalize, and the test
+        score should climb or at least stabilize as the gap between the two closes.
+      </p>
+      <p>
+        That's not what happened. Train Precision@50 barely moved — 1.000, 1.000,
+        0.980, 0.980 — while test scores swung with no consistent direction:
+        Precision@20 went 0.850 → 0.800 → 0.650 → 0.750; Precision@50 went 0.860 →
+        0.780 → 0.740 → 0.660. Regularization should tame an overfit model in a
+        predictable way. Instead, the harder I regularized, the less the test numbers
+        behaved like anything I could read a trend from.
+      </p>
+    </section>
+
+    <div class="mid-cta">
+      <p class="pull-quote">
+        "If a fix stops behaving the way its own diagnosis predicts, that diagnosis is
+        wrong — not the fix."
+      </p>
+      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+    </div>
+
+    <section class="beat">
+      <p>
+        That mismatch was the actual signal. A model that's genuinely overfitting
+        responds to regularization — maybe not perfectly, but predictably. Mine didn't
+        respond at all in the direction the overfitting story required. So the question
+        stopped being "how do I fix overfitting" and became "what else produces a
+        perfect train score and an unstable test score that regularization can't touch."
+      </p>
+
+      <div class="figure">
+        <div class="figure-frame">
+          <img src="assets/client-concentration-chart.svg"
+               alt="Stacked bar showing 618 test-eligible rows: 598 rows, 96.8 percent, belong to a single client, while the remaining 20 rows are split across three other clients.">
+        </div>
+        <figcaption>work/notebooks/w05_model.ipynb, cell 23 — verified against live execution output.</figcaption>
+      </div>
+
+      <p>
+        The answer was sitting in the test set itself: 618 rows, and 598 of them —
+        96.8% — belong to a single client. The other three clients combined don't have
+        enough rows to fill even a top-20 list. Precision@20 and Precision@50 on a test
+        set that concentrated aren't measuring "does this model generalize." They're
+        measuring how well the model happens to rank one client's pages, recomputed on
+        whatever handful of rows from three other clients got mixed in — which is
+        exactly the kind of number that can bounce around with every setting change for
+        reasons that have nothing to do with model capacity.
+      </p>
+      <p>
+        This wasn't overfitting. It was a test set too small and too lopsided to
+        produce a stable Precision@K in the first place — no amount of regularization
+        was ever going to fix a sample-size problem.
+      </p>
+    </section>
+
+    <section class="beat">
+      <h2>What I did with that</h2>
+      <p>
+        I didn't chase a cleaner number by tuning further — there wasn't a cleaner
+        number available at this test size, and reporting one would have meant
+        reporting noise as a result. What holds up is the direction: Random Forest beat
+        both the baseline score and the test set's base rate (0.519) at every
+        regularization setting I tried, not just the lucky one. What doesn't hold up is
+        the specific value — 0.86, or 0.65, or anything in between — because a
+        618-row, single-client-dominated test set can't tell you which of those numbers
+        is the "real" one.
+      </p>
+      <p>
+        That's the honest place to stop for now: a directional result I can defend, and
+        a precise number I'm explicitly not claiming.
+      </p>
+    </section>
+
+    <section class="beat">
+      <h2>Same pattern, smaller scale</h2>
+      <p>
+        A few weeks earlier, on the same lane, a first-pass ranking formula —
+        <code>days_since_last_update × impressions_90d</code> — scored <em>below</em>
+        its own base rate (0.450 vs. 0.596 at the top 20). The easy read was that the
+        underlying signal, staleness, didn't predict anything. The real cause was a
+        scale mismatch: multiplying two features with wildly different ranges let the
+        larger one dominate regardless of which one actually carried signal. Replacing
+        raw values with percentile ranks before combining them fixed it —
+        Precision@20 went from 0.450 to 0.800. Different project inside the same
+        internship, same instinct: a bad number is a question, not a verdict.
+      </p>
+    </section>
+
+    <div class="closing-cta">
+      <p>Email me for a screening call.</p>
+      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="foot-info">
+      <p class="foot-meta">Ali Shahrez · shahrez375@gmail.com</p>
+      <div class="foot-links">
+        <a href="https://github.com/Ali-Shahrez" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/ali-shahrez-608b70324/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </div>
+    </div>
+    <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="concTitle concDesc">
+  <title id="concTitle">Client concentration in the test-eligible set</title>
+  <desc id="concDesc">618 test-eligible rows. 598 rows, 96.8%, belong to a single client. The remaining 20 rows are split across three other clients — fewer rows than needed to fill even a top-20 list. Source: work notebooks w05 model, cell 23.</desc>
+
+  <style>
+    .section-lbl { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; fill: #6b6b68; }
+    .bar-dom { fill: #141414; }
+    .bar-rest { fill: #d8d3c8; stroke: #a9a49a; stroke-width: 1; }
+    .lbl-inside { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 15px; fill: #f7f6f4; }
+    .lbl-below { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; fill: #2E2E2E; }
+    .lbl-below-strong { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 13.5px; fill: #141414; }
+    .note { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; fill: #6b6b68; }
+  </style>
+
+  <text class="section-lbl" x="0" y="18">618 test-eligible rows</text>
+
+  <!-- single stacked bar, total width 600, dominant client 96.8% = 580.8, rest = 19.2 -->
+  <rect class="bar-dom" x="0" y="36" width="581" height="56" rx="4"/>
+  <rect class="bar-rest" x="583" y="36" width="57" height="56" rx="4"/>
+
+  <text class="lbl-inside" x="20" y="70">One client — 598 rows (96.8%)</text>
+
+  <!-- labels below -->
+  <text class="lbl-below-strong" x="0" y="118">One client</text>
+  <text class="lbl-below" x="0" y="138">598 rows · 96.8%</text>
+
+  <text class="lbl-below-strong" x="640" y="118" text-anchor="end">3 other clients</text>
+  <text class="lbl-below" x="640" y="138" text-anchor="end">20 rows · 3.2%</text>
+
+  <line x1="0" y1="164" x2="640" y2="164" stroke="#dedad2" stroke-width="1"/>
+
+  <text class="note" x="0" y="192">20 rows total across 3 clients — not enough to fill even a top-20 list</text>
+  <text class="note" x="0" y="212">on its own. Precision@20 / Precision@50 on this set are measuring one</text>
+  <text class="note" x="0" y="232">client's ranking, plus whatever handful of other rows got mixed in.</text>
+</svg>
