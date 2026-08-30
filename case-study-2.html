@@ -37,10 +37,26 @@
       <p class="cs-kicker">Case study — FlyRank ML internship, Lane 2</p>
       <h1>A Perfect Training Score, and Why I Didn't Trust It</h1>
       <p class="cs-meta">
-        Decline-risk ranking model, content refresh &amp; ranking · notebook on
+        Decline-risk ranking model, content refresh &amp; ranking · Active — 2026 · notebook on
         <a href="https://github.com/Ali-Shahrez/flyrank-ml-internship" target="_blank" rel="noopener">GitHub →</a>
+        · verifiable in <code>work/notebooks/w05_model.ipynb</code>, cells 23 and 25
       </p>
     </div>
+
+    <section class="beat">
+      <h2>Same pattern, smaller scale</h2>
+      <p>
+        Earlier on the same lane, a first-pass ranking formula —
+        <code>days_since_last_update × impressions_90d</code> — scored <em>below</em>
+        its own base rate (0.450 vs. 0.596 at the top 20). The easy read was that the
+        underlying signal, staleness, didn't predict anything. The real cause was a
+        scale mismatch: multiplying two features with wildly different ranges let the
+        larger one dominate regardless of which one actually carried signal. Replacing
+        raw values with percentile ranks before combining them fixed it —
+        Precision@20 went from 0.450 to 0.800. Same instinct held up again a few weeks
+        later, on a harder case — the one below.
+      </p>
+    </section>
 
     <section class="beat">
       <p>
@@ -93,6 +109,7 @@
         wrong — not the fix."
       </p>
       <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+      <span class="cta-fallback">Or email directly: <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></span>
     </div>
 
     <section class="beat">
@@ -147,24 +164,10 @@
       </p>
     </section>
 
-    <section class="beat">
-      <h2>Same pattern, smaller scale</h2>
-      <p>
-        A few weeks earlier, on the same lane, a first-pass ranking formula —
-        <code>days_since_last_update × impressions_90d</code> — scored <em>below</em>
-        its own base rate (0.450 vs. 0.596 at the top 20). The easy read was that the
-        underlying signal, staleness, didn't predict anything. The real cause was a
-        scale mismatch: multiplying two features with wildly different ranges let the
-        larger one dominate regardless of which one actually carried signal. Replacing
-        raw values with percentile ranks before combining them fixed it —
-        Precision@20 went from 0.450 to 0.800. Different project inside the same
-        internship, same instinct: a bad number is a question, not a verdict.
-      </p>
-    </section>
-
     <div class="closing-cta">
       <p>Email me for a screening call.</p>
       <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+      <span class="cta-fallback">Or email directly: <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></span>
     </div>
 
   </div>
@@ -173,7 +176,7 @@
 <footer class="site-footer">
   <div class="wrap-wide">
     <div class="foot-info">
-      <p class="foot-meta">Ali Shahrez · shahrez375@gmail.com</p>
+      <p class="foot-meta">Ali Shahrez · <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></p>
       <div class="foot-links">
         <a class="plain-link" href="https://github.com/Ali-Shahrez" target="_blank" rel="noopener">GitHub</a>
         <a class="plain-link" href="https://www.linkedin.com/in/ali-shahrez-608b70324/" target="_blank" rel="noopener">LinkedIn</a>
@@ -184,5 +187,6 @@
   </div>
 </footer>
 
+<script src="assets/copy-email.js" defer></script>
 </body>
 </html>

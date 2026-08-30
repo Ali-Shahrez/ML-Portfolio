@@ -34,13 +34,15 @@
   <div class="wrap">
 
     <div class="about-hero">
-      <!-- PLACEHOLDER: swap for the real head-and-shoulders bio photo before this ships.
-           No AI-generated or stock photo here — this is the one place on the site
-           where the subject is a real person, per the image-curation call. -->
-      <div class="bio-photo-slot" aria-hidden="true">Real photo goes here — head &amp; shoulders</div>
+      <!-- TEMPORARY: monogram placeholder, not a to-do note. Swap for the real
+           head-and-shoulders bio photo as soon as it's ready — no AI-generated
+           or stock photo here, this is the one place on the site where the
+           subject is a real person, per the image-curation call. -->
+      <div class="bio-photo-slot" aria-hidden="true"><span class="mono">AS</span></div>
       <div>
         <p class="cs-kicker" style="margin-top:0;">About</p>
         <h1 style="font-size: clamp(26px, 4vw, 34px); max-width: 18ch;">Ali Shahrez</h1>
+        <p class="cs-meta" style="margin-top: 6px;">Active — 2026</p>
         <p style="margin-top: 16px;">
           I work on applied ML — usually the kind of project where something's broken
           and the obvious explanation turns out to be wrong. One case is a lung cancer
@@ -58,11 +60,13 @@
         <li>I say what I don't know as directly as what I do. A hedged, honest result holds up better than a confident number that can't survive a second look.</li>
         <li>I check the notebook, not the narrative — real executed output, not a description of what the output should show.</li>
       </ul>
+      <p class="cs-meta" style="margin-top: 24px;">Built with: Python · TensorFlow/Keras · scikit-learn · pandas · NumPy</p>
     </section>
 
     <div class="closing-cta">
       <p>Email me for a screening call.</p>
       <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+      <span class="cta-fallback">Or email directly: <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></span>
     </div>
 
   </div>
@@ -71,7 +75,7 @@
 <footer class="site-footer">
   <div class="wrap-wide">
     <div class="foot-info">
-      <p class="foot-meta">Ali Shahrez · shahrez375@gmail.com</p>
+      <p class="foot-meta">Ali Shahrez · <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></p>
       <div class="foot-links">
         <a class="plain-link" href="https://github.com/Ali-Shahrez" target="_blank" rel="noopener">GitHub</a>
         <a class="plain-link" href="https://www.linkedin.com/in/ali-shahrez-608b70324/" target="_blank" rel="noopener">LinkedIn</a>
@@ -82,5 +86,6 @@
   </div>
 </footer>
 
+<script src="assets/copy-email.js" defer></script>
 </body>
 </html>

@@ -142,6 +142,8 @@ nav.site-nav a:hover { color: var(--text); }
 nav.site-nav a.current {
   color: var(--text);
   font-weight: 600;
+  border-bottom: 1.5px solid var(--ruled-out);
+  padding-bottom: 3px;
 }
 
 /* ---------- CTA button (accent — reserved) ---------- */
@@ -166,6 +168,24 @@ nav.site-nav a.current {
   outline: 2px solid var(--text);
   outline-offset: 3px;
 }
+
+/* Fallback line under a CTA button — for visitors whose device has no
+   default mail client configured. Deliberately not accented; it supports
+   the CTA, it doesn't compete with it. */
+.cta-fallback {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted-soft);
+}
+
+.cta-fallback a {
+  color: var(--muted-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cta-fallback a:hover { color: var(--text); }
 
 /* Plain-text link — deliberately NOT accented, so it never
    competes with the CTA for attention */
@@ -347,14 +367,7 @@ section.beat + section.beat {
   width: 148px;
   height: 148px;
   border-radius: 6px;
-  background: repeating-linear-gradient(
-    135deg,
-    #efece5,
-    #efece5 8px,
-    #e6e2d9 8px,
-    #e6e2d9 16px
-  );
-  border: 1px dashed var(--ruled-out);
+  background: var(--text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -363,6 +376,13 @@ section.beat + section.beat {
   color: var(--muted-soft);
   padding: 10px;
   line-height: 1.4;
+}
+
+.bio-photo-slot .mono {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 44px;
+  color: var(--bg);
 }
 
 .how-i-work li {
@@ -392,6 +412,16 @@ section.beat + section.beat {
   font-size: 13.5px;
   color: var(--muted-soft);
   margin: 0;
+}
+
+.site-footer .foot-meta a {
+  color: var(--muted-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.site-footer .foot-meta a:hover {
+  color: var(--text);
 }
 
 .foot-info {

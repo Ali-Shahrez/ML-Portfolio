@@ -1,6 +1,6 @@
-<svg viewBox="0 0 640 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="metricsTitle metricsDesc">
+<svg viewBox="0 0 640 474" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="metricsTitle metricsDesc">
   <title id="metricsTitle">Ensemble held-out metrics and case breakdown</title>
-  <desc id="metricsDesc">Accuracy 80.82%, precision 81.05%, recall 80.92%, F1 80.8%. Malignant cases: 86 correct, 26 missed, out of 112. Normal cases: 91 correct, 16 missed, out of 107.</desc>
+  <desc id="metricsDesc">Accuracy 80.82%, precision 81.05%, recall 80.92%, F1 80.8%. Positive class: malignant. Decision threshold tuned to maximize F1, not the default 0.5. Malignant cases: 86 correct, 26 missed, out of 112. Normal cases: 91 correct, 16 missed, out of 107.</desc>
 
   <style>
     .axis-lbl { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; fill: #2E2E2E; }
@@ -15,65 +15,66 @@
   </style>
 
   <text class="section-lbl" x="4" y="20">Held-out set — 3-model ensemble</text>
+  <text class="axis-lbl" x="4" y="34" style="fill:#6b6b68; font-size:12px;">Positive class: malignant · threshold tuned to maximize F1, not the default 0.5</text>
 
   <!-- Metric bars: Accuracy, Precision, Recall, F1 -->
   <!-- track full width 420 at x=140, scale 0-100 -->
 
   <!-- Accuracy 80.82 -->
-  <text class="axis-lbl" x="4" y="52">Accuracy</text>
-  <rect class="bar-track" x="140" y="38" width="420" height="16" rx="3"/>
-  <rect class="bar-metric" x="140" y="38" width="339.4" height="16" rx="3"/>
-  <text class="val-lbl" x="570" y="51">80.82%</text>
+  <text class="axis-lbl" x="4" y="66">Accuracy</text>
+  <rect class="bar-track" x="140" y="52" width="420" height="16" rx="3"/>
+  <rect class="bar-metric" x="140" y="52" width="339.4" height="16" rx="3"/>
+  <text class="val-lbl" x="570" y="65">80.82%</text>
 
   <!-- Precision 81.05 -->
-  <text class="axis-lbl" x="4" y="84">Precision</text>
-  <rect class="bar-track" x="140" y="70" width="420" height="16" rx="3"/>
-  <rect class="bar-metric" x="140" y="70" width="340.4" height="16" rx="3"/>
-  <text class="val-lbl" x="570" y="83">81.05%</text>
+  <text class="axis-lbl" x="4" y="98">Precision</text>
+  <rect class="bar-track" x="140" y="84" width="420" height="16" rx="3"/>
+  <rect class="bar-metric" x="140" y="84" width="340.4" height="16" rx="3"/>
+  <text class="val-lbl" x="570" y="97">81.05%</text>
 
   <!-- Recall 80.92 -->
-  <text class="axis-lbl" x="4" y="116">Recall</text>
-  <rect class="bar-track" x="140" y="102" width="420" height="16" rx="3"/>
-  <rect class="bar-metric" x="140" y="102" width="339.9" height="16" rx="3"/>
-  <text class="val-lbl" x="570" y="115">80.92%</text>
+  <text class="axis-lbl" x="4" y="130">Recall</text>
+  <rect class="bar-track" x="140" y="116" width="420" height="16" rx="3"/>
+  <rect class="bar-metric" x="140" y="116" width="339.9" height="16" rx="3"/>
+  <text class="val-lbl" x="570" y="129">80.92%</text>
 
   <!-- F1 80.8 -->
-  <text class="axis-lbl" x="4" y="148">F1</text>
-  <rect class="bar-track" x="140" y="134" width="420" height="16" rx="3"/>
-  <rect class="bar-metric" x="140" y="134" width="339.4" height="16" rx="3"/>
-  <text class="val-lbl" x="570" y="147">80.80%</text>
+  <text class="axis-lbl" x="4" y="162">F1</text>
+  <rect class="bar-track" x="140" y="148" width="420" height="16" rx="3"/>
+  <rect class="bar-metric" x="140" y="148" width="339.4" height="16" rx="3"/>
+  <text class="val-lbl" x="570" y="161">80.80%</text>
 
-  <line x1="0" y1="182" x2="640" y2="182" stroke="#dedad2" stroke-width="1"/>
+  <line x1="0" y1="196" x2="640" y2="196" stroke="#dedad2" stroke-width="1"/>
 
-  <text class="section-lbl" x="4" y="210">Case breakdown — 219 held-out scans</text>
+  <text class="section-lbl" x="4" y="224">Case breakdown — 219 held-out scans</text>
 
   <!-- Malignant group: correct 86, missed 26 (of 112) -->
-  <text class="grp-lbl" x="4" y="244">Malignant (112)</text>
+  <text class="grp-lbl" x="4" y="258">Malignant (112)</text>
 
   <!-- correct bar -->
-  <rect class="bar-correct" x="180" y="228" width="258" height="20" rx="3"/>
+  <rect class="bar-correct" x="180" y="242" width="258" height="20" rx="3"/>
   <!-- 86/112 * 336 total width available -->
-  <text class="cnt-lbl" x="180" y="266">86 correctly flagged</text>
+  <text class="cnt-lbl" x="180" y="280">86 correctly flagged</text>
 
   <!-- missed bar -->
-  <rect class="bar-missed" x="446" y="228" width="78" height="20" rx="3"/>
-  <text class="cnt-lbl" x="446" y="266">26 missed</text>
+  <rect class="bar-missed" x="446" y="242" width="78" height="20" rx="3"/>
+  <text class="cnt-lbl" x="446" y="280">26 missed</text>
 
   <!-- Normal group: correct 91, missed 16 (of 107) -->
-  <text class="grp-lbl" x="4" y="308">Normal (107)</text>
+  <text class="grp-lbl" x="4" y="322">Normal (107)</text>
 
-  <rect class="bar-correct" x="180" y="292" width="273" height="20" rx="3"/>
-  <text class="cnt-lbl" x="180" y="330">91 correctly cleared</text>
+  <rect class="bar-correct" x="180" y="306" width="273" height="20" rx="3"/>
+  <text class="cnt-lbl" x="180" y="344">91 correctly cleared</text>
 
-  <rect class="bar-missed" x="461" y="292" width="48" height="20" rx="3"/>
-  <text class="cnt-lbl" x="461" y="330">16 missed</text>
+  <rect class="bar-missed" x="461" y="306" width="48" height="20" rx="3"/>
+  <text class="cnt-lbl" x="461" y="344">16 missed</text>
 
-  <line x1="0" y1="358" x2="640" y2="358" stroke="#dedad2" stroke-width="1"/>
+  <line x1="0" y1="372" x2="640" y2="372" stroke="#dedad2" stroke-width="1"/>
 
-  <rect class="bar-correct" x="4" y="378" width="14" height="14" rx="2"/>
-  <text class="axis-lbl" x="26" y="390">Correct</text>
-  <rect class="bar-missed" x="110" y="378" width="14" height="14" rx="2"/>
-  <text class="axis-lbl" x="132" y="390">Missed</text>
+  <rect class="bar-correct" x="4" y="392" width="14" height="14" rx="2"/>
+  <text class="axis-lbl" x="26" y="404">Correct</text>
+  <rect class="bar-missed" x="110" y="392" width="14" height="14" rx="2"/>
+  <text class="axis-lbl" x="132" y="404">Missed</text>
 
-  <text class="axis-lbl" x="4" y="428" style="fill:#6b6b68; font-size:12.5px;">1,097-image dataset. A real limitation, not rounded away — framed as a screening aid, not a diagnostic tool.</text>
+  <text class="axis-lbl" x="4" y="442" style="fill:#6b6b68; font-size:12.5px;">1,097-image dataset. A real limitation, not rounded away — framed as a screening aid, not a diagnostic tool.</text>
 </svg>

@@ -37,8 +37,9 @@
       <p class="cs-kicker">Case study — lung cancer detection</p>
       <h1>Ruling Out the Wrong Bug</h1>
       <p class="cs-meta">
-        Ensemble of CNNs, chest CT classification · code on
+        Ensemble of CNNs, chest CT classification · Active — 2026 · code on
         <a href="https://github.com/Ali-Shahrez/Lung-Cancer-AI-Ensemble-CNN" target="_blank" rel="noopener">GitHub →</a>
+        · verifiable in <code>lung_final.ipynb</code>, executed cell outputs
       </p>
     </div>
 
@@ -81,6 +82,7 @@
         produces another means the diagnosis was wrong, not the model."
       </p>
       <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+      <span class="cta-fallback">Or email directly: <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></span>
     </div>
 
     <section class="beat">
@@ -114,7 +116,7 @@
       <div class="figure">
         <div class="figure-frame">
           <img src="assets/ensemble-metrics-chart.svg"
-               alt="Bar chart of held-out metrics: accuracy 80.82%, precision 81.05%, recall 80.92%, F1 80.8%. Case breakdown: of 112 malignant cases, 86 correctly flagged and 26 missed. Of 107 normal cases, 91 correctly cleared and 16 missed.">
+               alt="Bar chart of held-out metrics: accuracy 80.82%, precision 81.05%, recall 80.92%, F1 80.8%. Positive class is malignant; decision threshold tuned to maximize F1, not the default 0.5. Case breakdown: of 112 malignant cases, 86 correctly flagged and 26 missed. Of 107 normal cases, 91 correctly cleared and 16 missed.">
         </div>
         <figcaption>Real held-out results from the 1,097-image dataset. Restyled to the site's neutral palette — same numbers, no accent color used, since nothing on this page should compete with the CTA for it.</figcaption>
       </div>
@@ -128,6 +130,7 @@
     <div class="closing-cta">
       <p>Want to talk through how I'd debug something like this on your team?</p>
       <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+      <span class="cta-fallback">Or email directly: <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></span>
     </div>
 
     <div class="bridge">
@@ -140,7 +143,7 @@
 <footer class="site-footer">
   <div class="wrap-wide">
     <div class="foot-info">
-      <p class="foot-meta">Ali Shahrez · shahrez375@gmail.com</p>
+      <p class="foot-meta">Ali Shahrez · <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></p>
       <div class="foot-links">
         <a class="plain-link" href="https://github.com/Ali-Shahrez" target="_blank" rel="noopener">GitHub</a>
         <a class="plain-link" href="https://www.linkedin.com/in/ali-shahrez-608b70324/" target="_blank" rel="noopener">LinkedIn</a>
@@ -151,5 +154,6 @@
   </div>
 </footer>
 
+<script src="assets/copy-email.js" defer></script>
 </body>
 </html>
