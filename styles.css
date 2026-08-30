@@ -393,6 +393,100 @@ section.beat + section.beat {
   padding-left: 1.2em;
 }
 
+/* ---------- Contact form ---------- */
+
+.contact-section {
+  padding: 56px 0 72px;
+  border-top: 1px solid var(--hairline);
+}
+
+.contact-section h2 {
+  font-size: clamp(24px, 3.5vw, 30px);
+  max-width: 20ch;
+}
+
+.contact-intro {
+  color: var(--muted);
+  max-width: 50ch;
+  margin-top: 12px;
+}
+
+.contact-form {
+  max-width: 480px;
+  margin-top: 32px;
+}
+
+.contact-form .form-row {
+  margin-bottom: 20px;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.contact-form label .optional {
+  font-weight: 400;
+  color: var(--muted-soft);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  font-family: var(--font);
+  font-size: 15.5px;
+  color: var(--text);
+  background: #ffffff;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 11px 13px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.contact-form button[type="submit"] {
+  font-family: var(--font);
+  border: none;
+  cursor: pointer;
+}
+
+.contact-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Honeypot field — hidden from sighted users and screen readers, present
+   only to catch bots that fill in every field they can find. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-status {
+  max-width: 480px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.form-success { color: var(--text); }
+.form-error { color: var(--text); }
+.form-error a { color: var(--text); }
+
 /* ---------- Footer ---------- */
 
 .site-footer {

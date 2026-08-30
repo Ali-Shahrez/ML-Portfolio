@@ -25,7 +25,7 @@
       <a href="case-study-1.html">Case Study 1</a>
       <a href="case-study-2.html">Case Study 2</a>
       <a href="about.html">About</a>
-      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+      <a class="cta-button" href="#contact">Email me for a screening call</a>
     </nav>
   </div>
 </header>
@@ -42,9 +42,55 @@
       </p>
       <div class="hero-actions">
         <a class="plain-link" href="case-study-1.html">Read the proof →</a>
-        <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+        <a class="cta-button" href="#contact">Email me for a screening call</a>
         <span class="cta-fallback">Or email directly: <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></span>
       </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <p class="cs-kicker">Get in touch</p>
+      <h2>Tell me what you're hiring for</h2>
+      <p class="contact-intro">
+        A couple of lines on the role and what you're trying to solve is enough.
+        I'll reply from shahrez375@gmail.com.
+      </p>
+
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contact-form" class="contact-form">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hp-field" aria-hidden="true">
+          <label>Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </p>
+
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-row">
+          <label for="company">Company / role <span class="optional">(optional)</span></label>
+          <input type="text" id="company" name="company">
+        </div>
+
+        <div class="form-row">
+          <label for="message">What are you hiring for?</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="cta-button">Send — I'll reply directly</button>
+      </form>
+
+      <p class="form-status form-success" id="form-success" hidden>
+        Sent — that reached me. I'll reply from shahrez375@gmail.com.
+      </p>
+      <p class="form-status form-error" id="form-error" hidden>
+        That didn't go through. Email me directly instead:
+        <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a>
+      </p>
     </section>
   </div>
 </main>
@@ -59,10 +105,11 @@
         <a class="plain-link" href="assets/CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
       </div>
     </div>
-    <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
+    <a class="cta-button" href="#contact">Email me for a screening call</a>
   </div>
 </footer>
 
 <script src="assets/copy-email.js" defer></script>
+<script src="assets/contact-form.js" defer></script>
 </body>
 </html>
