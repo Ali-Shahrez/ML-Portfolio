@@ -139,6 +139,15 @@ nav.site-nav a {
 
 nav.site-nav a:hover { color: var(--text); }
 
+/* Scoped override: nav.site-nav a's specificity (0,1,2) otherwise beats
+   .cta-button (0,1,0) and silently drops the header CTA's text back to
+   --muted, failing contrast against the accent background. */
+nav.site-nav a.cta-button,
+nav.site-nav a.cta-button:hover {
+  color: #fdf8f3;
+  font-weight: 600;
+}
+
 nav.site-nav a.current {
   color: var(--text);
   font-weight: 600;

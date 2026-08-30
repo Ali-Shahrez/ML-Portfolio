@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ml-portfolio-ali-shahrez.netlify.app/sitemap.xml
