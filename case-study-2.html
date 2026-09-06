@@ -5,16 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Case Study — A Perfect Training Score, and Why I Didn't Trust It | Ali Shahrez</title>
 <meta name="description" content="A Random Forest hit a perfect training score. The standard fix didn't behave the way its own diagnosis predicted — so the diagnosis was wrong, not the fix.">
-<link rel="canonical" href="https://ml-portfolio-ali-shahrez.netlify.app/case-study-2.html">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Case Study — A Perfect Training Score, and Why I Didn't Trust It | Ali Shahrez">
-<meta property="og:description" content="A Random Forest hit a perfect training score. The standard fix didn't behave the way its own diagnosis predicted — so the diagnosis was wrong, not the fix.">
-<meta property="og:image" content="https://ml-portfolio-ali-shahrez.netlify.app/assets/og-image.png">
-<meta property="og:url" content="https://ml-portfolio-ali-shahrez.netlify.app/case-study-2.html">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Case Study — A Perfect Training Score, and Why I Didn't Trust It | Ali Shahrez">
-<meta name="twitter:description" content="A Random Forest hit a perfect training score. The standard fix didn't behave the way its own diagnosis predicted — so the diagnosis was wrong, not the fix.">
-<meta name="twitter:image" content="https://ml-portfolio-ali-shahrez.netlify.app/assets/og-image.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%224%22 fill=%22%23141414%22/><text x=%2216%22 y=%2221%22 font-family=%22IBM Plex Sans, sans-serif%22 font-weight=%22600%22 font-size=%2213%22 fill=%22%23F7F6F4%22 text-anchor=%22middle%22>AS</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +25,7 @@
       <a href="case-study-1.html">Case Study 1</a>
       <a href="case-study-2.html" class="current">Case Study 2</a>
       <a href="about.html">About</a>
-      <a class="cta-button" href="index.html#contact">Email me for a screening call</a>
+      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
     </nav>
   </div>
 </header>
@@ -47,26 +37,11 @@
       <p class="cs-kicker">Case study — FlyRank ML internship, Lane 2</p>
       <h1>A Perfect Training Score, and Why I Didn't Trust It</h1>
       <p class="cs-meta">
-        Decline-risk ranking model, content refresh &amp; ranking · Active — 2026 · notebook on
+        Decline-risk ranking model, content refresh &amp; ranking · notebook on
         <a href="https://github.com/Ali-Shahrez/flyrank-ml-internship" target="_blank" rel="noopener">GitHub →</a>
-        · verifiable in <code>work/notebooks/w05_model.ipynb</code>, cells 23 and 25
+        · full writeup: <a href="https://ali-shahrez.github.io/flyrank-ml-internship/" target="_blank" rel="noopener">deployed paper →</a>
       </p>
     </div>
-
-    <section class="beat">
-      <h2>Same pattern, smaller scale</h2>
-      <p>
-        Earlier on the same lane, a first-pass ranking formula —
-        <code>days_since_last_update × impressions_90d</code> — scored <em>below</em>
-        its own base rate (0.450 vs. 0.596 at the top 20). The easy read was that the
-        underlying signal, staleness, didn't predict anything. The real cause was a
-        scale mismatch: multiplying two features with wildly different ranges let the
-        larger one dominate regardless of which one actually carried signal. Replacing
-        raw values with percentile ranks before combining them fixed it —
-        Precision@20 went from 0.450 to 0.800. Same instinct held up again a few weeks
-        later, on a harder case — the one below.
-      </p>
-    </section>
 
     <section class="beat">
       <p>
@@ -118,8 +93,7 @@
         "If a fix stops behaving the way its own diagnosis predicts, that diagnosis is
         wrong — not the fix."
       </p>
-      <a class="cta-button" href="index.html#contact">Email me for a screening call</a>
-      <span class="cta-fallback">Or email directly: <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></span>
+      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
     </div>
 
     <section class="beat">
@@ -169,15 +143,38 @@
         is the "real" one.
       </p>
       <p>
+        A bootstrap check on the same held-out set backs that up from a different
+        angle: resampling the 618 rows 2,000 times, with the model and its scores held
+        fixed, Precision@20 stayed above the 0.519 base rate in 99.9% of resamples, and
+        Precision@50 stayed above it in 100%. That's a different question than the
+        regularization sweep — it varies which rows get drawn instead of which model
+        gets trained — and it lands on the same answer: the direction holds regardless
+        of the angle you check it from.
+      </p>
+      <p>
         That's the honest place to stop for now: a directional result I can defend, and
         a precise number I'm explicitly not claiming.
       </p>
     </section>
 
+    <section class="beat">
+      <h2>Same pattern, smaller scale</h2>
+      <p>
+        A few weeks earlier, on the same lane, a first-pass ranking formula —
+        <code>days_since_last_update × impressions_90d</code> — scored <em>below</em>
+        its own base rate (0.450 vs. 0.596 at the top 20). The easy read was that the
+        underlying signal, staleness, didn't predict anything. The real cause was a
+        scale mismatch: multiplying two features with wildly different ranges let the
+        larger one dominate regardless of which one actually carried signal. Replacing
+        raw values with percentile ranks before combining them fixed it —
+        Precision@20 went from 0.450 to 0.800. Different project inside the same
+        internship, same instinct: a bad number is a question, not a verdict.
+      </p>
+    </section>
+
     <div class="closing-cta">
       <p>Email me for a screening call.</p>
-      <a class="cta-button" href="index.html#contact">Email me for a screening call</a>
-      <span class="cta-fallback">Or email directly: <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></span>
+      <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
     </div>
 
   </div>
@@ -185,18 +182,10 @@
 
 <footer class="site-footer">
   <div class="wrap-wide">
-    <div class="foot-info">
-      <p class="foot-meta">Ali Shahrez · <a href="mailto:shahrez375@gmail.com?subject=Screening%20call">shahrez375@gmail.com</a></p>
-      <div class="foot-links">
-        <a class="plain-link" href="https://github.com/Ali-Shahrez" target="_blank" rel="noopener">GitHub</a>
-        <a class="plain-link" href="https://www.linkedin.com/in/ali-shahrez-608b70324/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="plain-link" href="assets/CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
-      </div>
-    </div>
-    <a class="cta-button" href="index.html#contact">Email me for a screening call</a>
+    <p class="foot-meta">Ali Shahrez · shahrez375@gmail.com</p>
+    <a class="cta-button" href="mailto:shahrez375@gmail.com?subject=Screening%20call">Email me for a screening call</a>
   </div>
 </footer>
 
-<script src="assets/copy-email.js" defer></script>
 </body>
 </html>
